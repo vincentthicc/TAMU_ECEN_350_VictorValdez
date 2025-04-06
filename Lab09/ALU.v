@@ -16,8 +16,8 @@ module ALU(BusW, BusA, BusB, ALUCtrl, Zero);
     
     always @(*) begin
         case(ALUCtrl)
-            `AND: BusW = BusA & BusB;
-            `OR: BusW = BusA | BusB;
+        `AND: BusW = BusA & BusB;
+        `OR: BusW = BusA | BusB;
 	    `ADD: BusW = BusA + BusB;
 	    `SUB: BusW = BusA - BusB;
 	    `PassB: BusW = BusB;

@@ -86,7 +86,7 @@ module control(
             end
 
           `OPCODE_ADDIMM: begin
-               reg2loc       = 1'b0;
+               reg2loc       = 1'bx;
                alusrc        = 1'b1;
                mem2reg       = 1'b0;
                regwrite      = 1'b1;
@@ -99,7 +99,7 @@ module control(
             end
 
           `OPCODE_SUBIMM: begin
-               reg2loc       = 1'b0;
+               reg2loc       = 1'bx;
                alusrc        = 1'b1;
                mem2reg       = 1'b0;
                regwrite      = 1'b1;
@@ -109,7 +109,20 @@ module control(
                uncond_branch = 1'b0;
                aluop         = 4'b0110;
                signop        = 2'b00;
-            end    
+            end
+          
+          `OPCODE_MOVZ: begin
+               reg2loc       = 1'bx;
+               alusrc        = 1'b1;
+               mem2reg       = 1'b0;
+               regwrite      = 1'b1;
+               memread       = 1'b0;
+               memwrite      = 1'b0;
+               branch        = 1'b0;
+               uncond_branch = 1'b0;
+               aluop         = 4'b0111;
+               signop        = 2'b00;
+          end
 
           `OPCODE_B: begin
                reg2loc       = 1'bx;
