@@ -7,6 +7,7 @@
 `define OPCODE_SUBIMM 11'b?1?10001???
 
 `define OPCODE_MOVZ   11'b110100101??
+`define OPCODE_MOVK   11'b111100101??
 
 `define OPCODE_B      11'b?00101?????
 `define OPCODE_CBZ    11'b?011010????
@@ -121,6 +122,19 @@ module control(
                branch        = 1'b0;
                uncond_branch = 1'b0;
                aluop         = 4'b0111;
+               signop        = 3'b100;
+          end
+          
+          `OPCODE_MOVK: begin
+               reg2loc       = 1'bx;
+               alusrc        = 1'b1;
+               mem2reg       = 1'b0;
+               regwrite      = 1'b1;
+               memread       = 1'b0;
+               memwrite      = 1'b0;
+               branch        = 1'b0;
+               uncond_branch = 1'b0;
+               aluop         = 4'b0001;
                signop        = 3'b100;
           end
 
