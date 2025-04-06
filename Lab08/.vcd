@@ -1,0 +1,93 @@
+$date
+	Wed Mar 26 13:39:20 2025
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module NextPCLogic_v $end
+$var wire 64 ! NextPC [63:0] $end
+$var reg 1 " ALUZero $end
+$var reg 1 # Branch $end
+$var reg 64 $ CurrentPC [63:0] $end
+$var reg 64 % SignExtImm64 [63:0] $end
+$var reg 1 & UncondBranch $end
+$var reg 8 ' passed [7:0] $end
+$scope module uut $end
+$var wire 1 " ALUZero $end
+$var wire 1 # Branch $end
+$var wire 64 ( CurrentPC [63:0] $end
+$var wire 64 ) SignExtImm64 [63:0] $end
+$var wire 1 & Uncondbranch $end
+$var wire 1 * branchMUX $end
+$var reg 64 + NextPC [63:0] $end
+$upscope $end
+$scope task allPassed $end
+$var reg 8 , numTests [7:0] $end
+$var reg 8 - passed [7:0] $end
+$upscope $end
+$scope task passTest $end
+$var reg 64 . actualOut [63:0] $end
+$var reg 64 / expectedOut [63:0] $end
+$var reg 8 0 passed [7:0] $end
+$var reg 257 1 testName [256:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+bx 1
+bx 0
+bx /
+bx .
+bx -
+bx ,
+b100 +
+0*
+b1111111111111111111111111111111111111111111111111111111111111111 )
+b0 (
+b0 '
+0&
+b1111111111111111111111111111111111111111111111111111111111111111 %
+b0 $
+0#
+1"
+b100 !
+$end
+#20000
+b1100 !
+b1100 +
+1*
+1&
+0"
+b11 %
+b11 )
+b1 '
+b1 0
+b1010100011001010111001101110100001000000011000100111010001000000100111001101111001000000110001001110010011000010110111001100011011010000010000000111101001111100010000001010000010000110010101100110100 1
+b100 /
+b100 .
+#40000
+b100000100 !
+b100000100 +
+0&
+1"
+1#
+b1 %
+b1 )
+b100000000 $
+b100000000 (
+b10 '
+b10 0
+b110010001101001011101000110100101101111011011100110000101101100001000000110001001110010011000010110111001100011011010000010000000111101001111100010000001010000010000110010000000101011001000000010100001001001011011010110110100111100001111000011001000101001 1
+b1100 /
+b1100 .
+#60000
+b11 ,
+b11 -
+b11 '
+b11 0
+b100000100 /
+b100000100 .
