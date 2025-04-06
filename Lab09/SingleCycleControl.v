@@ -1,3 +1,5 @@
+`timescale 1ns/1ps
+
 `define OPCODE_ANDREG 11'b?0001010???
 `define OPCODE_ORRREG 11'b?0101010???
 `define OPCODE_ADDREG 11'b?0?01011???
@@ -134,7 +136,7 @@ module control(
                memwrite      = 1'b0;
                branch        = 1'b0;
                uncond_branch = 1'b0;
-               aluop         = 4'b0001;
+               aluop         = 4'b1000;
                signop        = 3'b100;
           end
 

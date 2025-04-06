@@ -1,3 +1,5 @@
+`timescale 1ns/1ps
+
 module singlecycle(
 		   input 	     resetl,
 		   input [63:0]      startpc,
@@ -43,6 +45,7 @@ module singlecycle(
 
    // Sign Extender connections
    wire [63:0] 			     extimm;
+   wire [63:0]           movkmask;
 
    // Memory data connections
    wire [63:0] readdata;
@@ -58,8 +61,8 @@ module singlecycle(
 
    // Parts of instruction
    assign rd = instruction[4:0];
-   assign rm = instruction[9:5];
-   assign rn = reg2loc ? instruction[4:0] : instruction[20:16];
+   assign rm = (opcode[10:2] == 10'b111100101) ? rd :instruction[9:5];
+   assign rn = (opcode[10:2] == 10'b111100101) ? rd : (reg2loc ? instruction[4:0] : instruction[20:16]); // If MOVK, set rn = rd, otherwise, work as normal.
    assign opcode = instruction[31:21];
 
    InstructionMemory imem(
@@ -99,6 +102,7 @@ module singlecycle(
 
     SignExtender SE(
       .ExtImm(extimm),
+      .MovKMask(movkmask),
       .Imm(instruction[25:0]),
       .Ctrl(signop)
     );
@@ -111,7 +115,8 @@ module singlecycle(
       .BusA(regoutA),
       .BusB(aluSource),
       .ALUCtrl(aluctrl),
-      .Zero(zero)
+      .Zero(zero),
+      .MovKMask(movkmask)
     );
 
     DataMemory dMem(

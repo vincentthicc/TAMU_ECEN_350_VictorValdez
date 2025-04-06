@@ -91,6 +91,17 @@ module SingleCycleProcTest_v;
       // Add your new tests here
       // ***********************************************************
 
+      #2
+      while (currentPC < 64'h4c) begin
+         @(posedge CLK);
+         @(negedge CLK);
+            $display("CurrentPC:%h", currentPC);
+      end
+      // Extra pair of clock edges to make sure X10 gets written into
+      @(posedge CLK)
+      @(negedge CLK)
+      passTest(uut.RF.registers[10], 64'h123456789abcdef0, "Results of Program 2", passed);
+
       // Done
       allPassed(passed, 2);   // Be sure to change the one to match
       // the number of tests you add.
