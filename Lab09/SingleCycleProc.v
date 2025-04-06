@@ -93,32 +93,32 @@ module singlecycle(
         .RA(rm),
         .RB(rn),
         .RW(rd),
-        .RegWrite(regwrite),
-        .Clock(CLK)
+        .RegWr(regwrite),
+        .Clk(CLK)
     );
 
     SignExtender SE(
-      .Instr(instruction[31:0]),
-      .InstType(signop),
-      .SEimm(extimm)
+      .ExtImm(extimm),
+      .Imm(instruction[25:0]),
+      .Ctrl(signop)
     );
 
     wire [63:0] aluSource;
     assign aluSource = (alusrc) ? extimm : regoutB;
 
     ALU alu(
-      .A(regoutA),
-      .B(aluSource),
+      .BusW(aluout),
+      .BusA(regoutA),
+      .BusB(aluSource),
       .ALUCtrl(aluctrl),
-      .Result(aluout),
       .Zero(zero)
     );
 
     DataMemory dMem(
       .Address(aluout),
       .WriteData(regoutB),
-      .MemWrite(memwrite),
-      .MemRead(memread),
+      .MemoryWrite(memwrite),
+      .MemoryRead(memread),
       .ReadData(readdata),
       .Clock(CLK)
     );
